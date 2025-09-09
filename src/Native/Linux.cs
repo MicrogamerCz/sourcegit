@@ -88,7 +88,12 @@ namespace SourceGit.Native
 
             var startInfo = new ProcessStartInfo();
             startInfo.WorkingDirectory = cwd;
+
+#if FLATPAK
+            startInfo.FileName = "flatpak-spawn --host " + terminal;
+#else
             startInfo.FileName = terminal;
+#endif
 
             if (terminal.EndsWith("wezterm", StringComparison.OrdinalIgnoreCase))
                 startInfo.Arguments = $"start --cwd {cwd.Quoted()}";
