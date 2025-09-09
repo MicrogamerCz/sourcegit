@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -82,16 +82,18 @@ namespace SourceGit.Native
 
         public void OpenTerminal(string workdir)
         {
+            Console.WriteLine(Environment.CurrentDirectory);
+
             var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var cwd = string.IsNullOrEmpty(workdir) ? home : workdir;
             var terminal = OS.ShellOrTerminal;
 
             var startInfo = new ProcessStartInfo();
+            startInfo.WorkingDirectory = cwd;
 
 #if FLATPAK
             startInfo.FileName = "flatpak-spawn --host " + terminal;
 #else
-            startInfo.WorkingDirectory = cwd;
             startInfo.FileName = terminal;
 #endif
 
