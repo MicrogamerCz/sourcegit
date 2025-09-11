@@ -82,8 +82,6 @@ namespace SourceGit.Native
 
         public void OpenTerminal(string workdir)
         {
-            Console.WriteLine(Environment.CurrentDirectory);
-
             var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var cwd = string.IsNullOrEmpty(workdir) ? home : workdir;
             var terminal = OS.ShellOrTerminal;
@@ -92,7 +90,7 @@ namespace SourceGit.Native
             startInfo.WorkingDirectory = cwd;
 
 #if FLATPAK
-            startInfo.FileName = "flatpak-spawn --host " + terminal;
+            startInfo.FileName = "/app/bin/host-spawn " + terminal;
 #else
             startInfo.FileName = terminal;
 #endif
