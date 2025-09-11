@@ -89,6 +89,9 @@ namespace SourceGit.Native
             var startInfo = new ProcessStartInfo();
             startInfo.WorkingDirectory = cwd;
 
+            Console.WriteLine(cwd);
+            Console.WriteLine(Directory.Exists(cwd));
+
 #if FLATPAK
             startInfo.FileName = "/app/bin/host-spawn " + terminal;
 #else
