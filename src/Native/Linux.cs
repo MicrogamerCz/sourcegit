@@ -94,8 +94,6 @@ namespace SourceGit.Native
             Console.WriteLine(Directory.Exists(cwd));
 
 #if FLATPAK
-            // startInfo.FileName = "/app/bin/host-spawn " + terminal;
-            // startInfo.FileName = "sh -c \"flatpak-spawn --host kitty\"";
             startInfo.FileName = "flatpak-spawn";
             startInfo.Arguments = $"--host {terminal}";
 #else
