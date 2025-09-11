@@ -105,11 +105,12 @@ namespace SourceGit.Native
 
             try
             {
-                Process.Start(startInfo);
+                // Process.Start(startInfo);
+                Process.Start("/app/bin/host-spawn kitty");
             }
             catch (Exception e)
             {
-                App.RaiseException(workdir, $"Failed to start '{OS.ShellOrTerminal}'. Reason: {e.Message}");
+                App.RaiseException(workdir, $"Failed to start '{OS.ShellOrTerminal}'. Reason: {e.Message}. Exception type: {e.GetType().FullName}");
             }
         }
 
