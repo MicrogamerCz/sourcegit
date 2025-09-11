@@ -87,13 +87,17 @@ namespace SourceGit.Native
             var terminal = OS.ShellOrTerminal;
 
             var startInfo = new ProcessStartInfo();
+            startInfo.UseShellExecute = true;
             startInfo.WorkingDirectory = cwd;
 
             Console.WriteLine(cwd);
             Console.WriteLine(Directory.Exists(cwd));
 
 #if FLATPAK
-            startInfo.FileName = "/app/bin/host-spawn " + terminal;
+            // startInfo.FileName = "/app/bin/host-spawn " + terminal;
+            // startInfo.FileName = "sh -c \"flatpak-spawn --host kitty\"";
+            startInfo.FileName = "flatpak-spawn";
+            startInfo.Arguments = $"--host {terminal}";
 #else
             startInfo.FileName = terminal;
 #endif
@@ -105,8 +109,7 @@ namespace SourceGit.Native
 
             try
             {
-                // Process.Start(startInfo);
-                Process.Start("/app/bin/host-spawn kitty");
+                Process.Start(startInfo);
             }
             catch (Exception e)
             {
