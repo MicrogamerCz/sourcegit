@@ -29,7 +29,7 @@ namespace SourceGit.ViewModels
 
             await new Commands.LFS(_repo.FullPath)
                 .Use(log)
-                .PushAsync(SelectedRemote.Name);
+                .PushAsync($"{SelectedRemote.Name} {_repo.CurrentBranch.Name}");
 
             log.Complete();
             return true;
