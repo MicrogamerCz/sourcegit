@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -90,9 +89,6 @@ namespace SourceGit.Native
             startInfo.UseShellExecute = true;
             startInfo.WorkingDirectory = cwd;
 
-            Console.WriteLine(cwd);
-            Console.WriteLine(Directory.Exists(cwd));
-
 #if FLATPAK
             startInfo.FileName = "flatpak-spawn";
             startInfo.Arguments = $"--host {terminal}";
@@ -111,7 +107,7 @@ namespace SourceGit.Native
             }
             catch (Exception e)
             {
-                App.RaiseException(workdir, $"Failed to start '{OS.ShellOrTerminal}'. Reason: {e.Message}. Exception type: {e.GetType().FullName}");
+                App.RaiseException(workdir, $"Failed to start '{OS.ShellOrTerminal}'. Reason: {e.Message}");
             }
         }
 
