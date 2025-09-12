@@ -86,7 +86,6 @@ namespace SourceGit.Native
             var terminal = OS.ShellOrTerminal;
 
             var startInfo = new ProcessStartInfo();
-            startInfo.UseShellExecute = true;
             startInfo.WorkingDirectory = cwd;
 
 #if FLATPAK
